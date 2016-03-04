@@ -1,0 +1,40 @@
+<form class="ui form">
+  <div class="two fields">
+    <div class="field">
+      <label>Full Name</label>
+      <input name="fullname" ng-model="objuser.fullname" type="text">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input name="email" ng-model="objuser.email" type="email">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Country</label>
+	  <select class="ui dropdown" name="country" ng-model="objuser.country">
+		<option value="">Selct Country</option>
+	  </select>      
+    </div>
+    <div class="field">
+      <label>Address</label>
+      <input type="text" ng-model="objuser.address" name="address">
+    </div>
+  </div>
+  <div class="two fields">
+    <div class="field">
+      <label>Interests</label>
+		<select name="interests" multiple="" class="ui fluid dropdown" ng-model="objuser.interests">
+			<option value="">Skills</option>
+		</select>	
+      </div>
+    <div class="field">
+      <label>Gender</label>
+	  <select class="ui dropdown" name="gender" ng-model="objuser.gender">
+		<option value="">Select Gender</option>
+	  </select>      
+    </div>
+  </div>
+  <div class="ui submit positive button">Submit</div>
+  <div class="ui error message"></div>
+</form>

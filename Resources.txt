@@ -1,0 +1,5 @@
+Directly accessing mongodb data in angularjs app via mongodb API
+https://docs.mongodb.org/ecosystem/tools/http-interfaces/#HttpInterface-RESTInterfaces
+
+Installing slim and composer
+http://www.slimframework.com/docs/start/installation.html

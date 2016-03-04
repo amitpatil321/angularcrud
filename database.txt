@@ -1,0 +1,65 @@
+-- phpMyAdmin SQL Dump
+-- version 4.3.11.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Mar 04, 2016 at 11:00 AM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `demos`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(250) NOT NULL,
+  `email` varchar(55) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `gender` int(1) NOT NULL,
+  `interests` varchar(250) NOT NULL,
+  `address` varchar(250) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `email`, `country`, `gender`, `interests`, `address`) VALUES
+(16, 'Nilesh Patil', 'nilesh@gmail.com', 'India', 1, 'writing,swimming,internet', 'Karad, India'),
+(47, 'Shrikant Jadhav', 'shrikant@rediff.com', 'UK', 1, 'reading,writing,swimming', 'Pune, India'),
+(49, 'Amit Patil', 'Amit@gmail.com', 'Russia', 1, 'reading,internet', 'Karad'),
+(50, 'asd', 'asd@asd.com', 'Australia', 1, 'swimming,internet', 'asdad'),
+(51, 'ewrew', 'ddfgfd@asdlc.com', 'Singapore', 0, 'writing,swimming', 'qweqwe'),
+(52, 'kjlkjl', 'wqsc@xcv.vom', 'Malaysia', 0, 'reading,writing', 'rtrhg'),
+(53, 'aaa', 'aa@aa.com', 'Singapore', 1, 'writing,swimming', 'HG Road'),
+(54, 'aaa1', 'aaa@aaa.com1', 'Singapore1', 1, 'reading,writing,swimming', 'aaa');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
