@@ -1,13 +1,16 @@
 angular.module('crud', [
  'ngRoute',	
  'crud.list',
- 'crud.edit'
+ 'crud.add',
+ 'crud.edit',
+ 'crud.factory'
 ])
 
 .config(function($routeProvider) {
 	
 	$routeProvider.when("/add",{
-		templateUrl : "templates/add.html"
+		templateUrl : "templates/add.html",
+		controller  : "ctrlAdd"
 	});	
 
 	$routeProvider.when("/edit/:id",{

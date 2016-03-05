@@ -1,37 +1,23 @@
-angular.module('crud.edit', [])
+angular.module('crud.add', [])
 
-.controller('ctrlEdit', function($scope,$http,$routeParams,$window,genders,countries,interests,helper){
+.controller('ctrlAdd', function($scope,$http,$routeParams,$window,genders,countries,interests,helper){
   $scope.objuser = {};
 
   $scope.genders    = genders.all();   
   $scope.countries  = countries.all();   
   $scope.uinterests = interests.all(); 
-
-  // Fetch used details from DB
-  $http.get("API/users/"+$routeParams.id)
-  .then(function(response){ 
-    $scope.objuser = response.data; 
-      
-    setTimeout(function(){
-      // Set users country
-      $('.country').dropdown('set selected', $scope.objuser.country);
-      // Set users gender
-      $('.gender').dropdown('set selected', $scope.objuser.gender);
-      // Set users skills
-      skills = $scope.objuser.interests.split(",");
-      $('.interests').dropdown('set selected', skills);
-    },1);
-      
+    
+  setTimeout(function(){
     // Initialize semantic ui dropdown ui
     $('.ui.dropdown').dropdown();
-  });
+  },1);
 
   // Submit form 
   $('form').submit(function(event) {
 
     $http({
       method  : 'POST',
-      url     : "API/users/update",
+      url     : "API/users/add",
       data    : $scope.objuser, //forms user object
       headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
     })
@@ -46,7 +32,6 @@ angular.module('crud.edit', [])
 
     });
   });
-
 
   // On cancel button press go back
   $(".cancel").click(function(){

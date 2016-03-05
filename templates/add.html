@@ -1,1 +1,46 @@
-Add page 
+<h3 class="ui top attached inverted header">Add User</h3>
+<div class="ui attached segment">
+	<form class="ui form">
+	  <div class="two fields">
+	    <div class="field">
+	      <label>Full Name</label>
+	      <input name="fullname" ng-model="objuser.fullname" type="text">
+	    </div>
+	    <div class="field">
+	      <label>Email</label>
+	      <input name="email" ng-model="objuser.email" type="email">
+	    </div>
+	  </div>
+	  <div class="two fields">
+	    <div class="field">
+	      <label>Country</label>
+		  <select class="ui dropdown country" name="country" ng-model="objuser.country">
+			<option value="">Select Country</option>
+			<option ng-repeat="country in countries" value="{{country}}">{{country}}</option>
+		  </select>      
+	    </div>
+	    <div class="field">
+	      <label>Address</label>
+	      <input type="text" ng-model="objuser.address" name="address">
+	    </div>
+	  </div>
+	  <div class="two fields">
+	    <div class="field">
+	      <label>Skills</label>
+			<select name="interests" multiple="" class="ui fluid dropdown interests" ng-model="objuser.interests">
+				<option value="">Skills</option>
+				<option ng-repeat="interest in uinterests" value="{{interest}}">{{interest}}</option>
+			</select>	
+	      </div>
+	    <div class="field">
+	      <label>Gender</label>
+		  <select class="ui dropdown gender" name="gender" ng-model="objuser.gender">
+			<option value="">Select Gender</option>
+			<option ng-repeat="(index,gender) in genders" value="{{index}}">{{gender}}</option>			
+		  </select>      
+	    </div>
+	  </div>
+	  <button class="ui button positive" type="submit"><i class="icon save"></i>Submit</button>
+	  <button class="ui button negative cancel" type="button"><i class="icon cancel"></i>Cancel</button>
+	</form>
+</div>	

@@ -38,6 +38,55 @@ $app->get('/users/:id', function($id) use($app) {
 	$arr = array();
 	$users = ORM::for_table('users')->find_one($id)->as_array();
 	echo json_encode($users);
+});
+
+$app->post('/users/add', function () use ($app) {    
+	$app->response->setStatus(200);
+
+	// Get form post data
+   	$request = $app->request();
+    $body = $request->getBody();
+    $input = json_decode($body); 
+
+	$results = ORM::for_table('users')->create();
+	if($results){
+		$results->id  		= '';
+		$results->fullname  = $input->fullname;
+		$results->email     = $input->email;
+		$results->country   = $input->country;
+		$results->gender    = $input->gender;
+		$results->interests = implode(",",$input->interests);
+		$results->address   = $input->address;
+		if($results->save())
+			echo json_encode(array("success" => 1));
+		else
+			echo json_encode(array("success" => 0));
+	}else
+		echo json_encode(array("success" => 0));
+}); 
+
+$app->post('/users/update', function () use ($app) {    
+	$app->response->setStatus(200);
+
+	// Get form post data
+   	$request = $app->request();
+    $body = $request->getBody();
+    $input = json_decode($body); 
+
+	$results = ORM::for_table('users')->find_one($input->id);
+	if($results){
+		$results->fullname  = $input->fullname;
+		$results->email     = $input->email;
+		$results->country   = $input->country;
+		$results->gender    = $input->gender;
+		$results->interests = implode(",",$input->interests);
+		$results->address   = $input->address;
+		if($results->save())
+			echo json_encode(array("success" => 1));
+		else
+			echo json_encode(array("success" => 0));
+	}else
+		echo json_encode(array("success" => 0));
 }); 
  
 

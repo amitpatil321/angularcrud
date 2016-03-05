@@ -1,3 +1,8 @@
+<a class="ui button positive" href="#/add"><i class="icon add"></i>Add User</a>
+<div class="ui icon input" style="float:right;">
+  <input placeholder="Search..." ng-model="search" type="text">
+  <i class="inverted circular search link icon"></i>
+</div>
 <table class="ui table selectable olive celled">
   <thead>
     <tr>
@@ -11,11 +16,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="user in data">
-    	<td>{{user.fullname}}</td>
+    <tr ng-repeat="user in data | filter:search | orderBy:sortType:sortReverse">
+    	<td ng-click="sortType = 'fullname'">{{user.fullname}}</td>
     	<td>{{user.email}}</td>
     	<td>{{user.country}}</td>
-    	<td>{{user.gender}}</td>
+    	<td>{{user.gender == '1' ? 'Male' : 'Female' }}</td>
     	<td>{{user.interests}}</td>
     	<td>{{user.address}}</td>
     	<td>

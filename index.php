@@ -16,12 +16,12 @@ error_reporting(E_ALL);
    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="assets/js/app.js"></script>
   <script src="assets/js/list.js"></script>
+  <script src="assets/js/add.js"></script>
   <script src="assets/js/edit.js"></script>
+  <script src="assets/js/factory.js"></script>
  </head>
  <body>
    <h1>CRUD Application</h1>
-   <a href="#/">Home</a>
-   <a href="#/add">Add</a>
    <div ng-view></div>
  </body>
 </html>
