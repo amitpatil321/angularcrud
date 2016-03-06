@@ -1,9 +1,18 @@
 <h3 class="ui top attached inverted header">Update User</h3>
 <div class="ui attached segment">
 	<form class="ui form">
-	  <div class="ui negative message" ng-class="msgtext.length ? 'visible' : 'hidden'"><div class="header">{{msgtitle}}</div>
-		<span ng-repeat="error in msgtext">- {{error}}<br></span>
-	  </div>	
+	  
+	  <!-- Error message -->
+	  <div ng-if="errors.length" class="ui message negative"><div class="header"><i class="icon warning sign"></i>Error!</div>
+		<span ng-repeat="error in errors">- {{error}}<br></span>
+	  </div>
+	  
+	  <!-- Success message -->	
+	  <div ng-if="msgtext" class="ui message positive"><div class="header"><i class="icon checkmark"></i>Success!</div>
+		<span>{{msgtext}}</span>
+	  </div>
+	  
+
 	  <div class="two fields">
 	    <div class="field">
 	      <label>Full Name</label>
@@ -42,7 +51,7 @@
 			<option ng-repeat="(index,gender) in genders" value="{{index}}">{{gender}}</option>			
 		  </select>      
 	    </div>
-	  </div>
+	  </div>  
 	  <button class="ui button positive" type="submit"><i class="icon save"></i>Submit</button>
 	  <button class="ui button negative cancel" type="button"><i class="icon cancel"></i>Cancel</button>
 	</form>

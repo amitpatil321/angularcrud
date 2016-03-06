@@ -31,6 +31,7 @@ global $validator;
 $validator  = v::key('fullname', v::stringType()->notEmpty())
             ->key('email', v::notEmpty()->email())
             ->key('country', v::stringType()->notEmpty())
+            ->key('address', v::stringType()->notEmpty())
             ->key('skills', v::notEmpty())
             ->key('gender', v::notEmpty());
 
@@ -42,6 +43,8 @@ $app->get('/', function() use($app) {
 
 // Get list of all users
 $app->get('/users', function() use($app) {
+	// Set headers to json with response code 200
+	$app->response->headers->set('Content-Type', 'application/json');
     $app->response->setStatus(200);
     $arr = array();
 
@@ -56,15 +59,24 @@ $app->get('/users', function() use($app) {
 
 // Get single users info
 $app->get('/users/:id', function($id) use($app) {
+	// Set headers to json with response code 200
+	$app->response->headers->set('Content-Type', 'application/json');
 	$app->response->setStatus(200);
+
 	$arr = array();
-	$users = ORM::for_table('users')->find_one($id)->as_array();
-	echo json_encode($users);
+	$users = ORM::for_table('users')->find_one($id);
+	if($users)
+		echo json_encode($users->as_array());
+	else
+		echo json_encode(array("success" => 0,"msg" => "User not found"));
 });
 
 // Add new user
 $app->post('/users/add', function () use ($app) {
 	global $validator;
+
+	// Set headers to json with response code 200
+	$app->response->headers->set('Content-Type', 'application/json');
 	$app->response->setStatus(200);
 	
 	// Get form post data
@@ -108,6 +120,9 @@ $app->post('/users/add', function () use ($app) {
 // Update user info
 $app->post('/users/update', function () use ($app) {    
 	global $validator;
+
+	// Set headers to json with response code 200
+	$app->response->headers->set('Content-Type', 'application/json');
 	$app->response->setStatus(200);
 
 	// Get form post data
@@ -148,21 +163,25 @@ $app->post('/users/update', function () use ($app) {
 /* Delete user from database*/
 
 $app->post('/users/delete', function () use ($app) {
+	// Set headers to json with response code 200
+	$app->response->headers->set('Content-Type', 'application/json');
+	$app->response->setStatus(200);
+
 	// Get form post data
 	$request   = $app->request();
 	$body      = $request->getBody();
 	$input     = json_decode($body); 
-	$user = ORM::for_table('users')->find_one($input->id);
-	echo json_encode(array("success" => 1, "msg" => "User deleted"));
-	exit;
-	if($user->delete())
-		echo json_encode(array("success" => 1, "msg" => "User deleted"));
-	else
-		echo json_encode(array("success" => 0, "msg" => "Operation failed"));		
+	$user 	   = ORM::for_table('users')->find_one($input->id);
+	if($user){
+		if($user->delete())
+			echo json_encode(array("success" => 1, "msg" => "User deleted"));
+		else
+			echo json_encode(array("success" => 0, "msg" => "Operation failed"));		
+	}else	
+		echo json_encode(array("success" => 0, "msg" => "User not found"));		
 });
 
 $app->run();
-
 
 
 

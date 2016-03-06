@@ -1,12 +1,19 @@
-<a class="ui button positive" href="#/add"><i class="icon add"></i>Add User</a>
-<div class="ui icon input" style="float:right;">
-  <input placeholder="Search..." ng-model="search" type="text">
-  <i class="inverted circular search link icon"></i>
+<a class="ui button positive" href="#/add"><i class="icon add user"></i>Add User</a>
+<div class="ui left icon input" style="float: right;">
+  <input type="text" ng-model="search" placeholder="Search users...">
+  <i class="users icon"></i>
 </div>
-<div class="ui message" ng-class="msgtext.length ? 'visible' : 'hidden'"><div class="header">{{msgtitle}}</div>
-<span ng-repeat="error in msgtext">- {{error}}<br></span>
+
+<!-- Error message -->
+<div ng-if="errors.length" class="ui message negative"><div class="header"><i class="icon warning sign"></i>Error!</div>
+<span ng-repeat="error in errors">- {{error}}<br></span>
 </div>
-<h3>Change message boc style class</h3>
+
+<!-- Success message -->  
+<div ng-if="msgtext" class="ui message positive"><div class="header"><i class="icon checkmark"></i>Success!</div>
+<span>{{msgtext}}</span>
+</div>
+
 <table class="ui table selectable olive celled">
   <thead>
     <tr>
@@ -20,6 +27,16 @@
     </tr>
   </thead>
   <tbody>
+    <tr ng-if="!data.length"><td colspan="8">
+      <div class="ui icon negative message">
+        <i class="warning circle icon"></i>
+        <div class="content">
+          <div class="header">
+            No record to display
+          </div>
+        </div>
+      </div>      
+    </td></tr>
     <tr id="{{user.id}}" ng-repeat="user in data track by $index | filter:search | orderBy:sortType:sortReverse">
     	<td ng-click="sortType = 'fullname'">{{user.fullname}}</td>
     	<td>{{user.email}}</td>
@@ -28,8 +45,8 @@
     	<td>{{user.skills}}</td>
     	<td>{{user.address}}</td>
     	<td>
-    		<a href="#/edit/{{user.id}}"><i class="pencil large teal link icon"></i></a>
-    		<a ng-click="delete(user.id);"><i class="close large red link icon"></i></a>	
+    		<a href="#/edit/{{user.id}}"><i class="pencil delete large teal link icon"></i></a>
+    		<a ng-click="delete(user.id);"><i class="user delete large red link icon"></i></a>
     	</td>
     </tr>
   </tbody>

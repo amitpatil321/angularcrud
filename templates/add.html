@@ -1,12 +1,19 @@
 <h3 class="ui top attached inverted header">Add User</h3>
 <div class="ui attached segment">
 	<form class="ui form">
-	  <div class="ui negative message" ng-class="msgtext.length ? 'visible' : 'hidden'"><div class="header">{{msgtitle}}</div>
-   		<span ng-repeat="error in msgtext">- {{error}}<br></span>
-	  </div>	
+	  <!-- Error message -->
+	  <div ng-if="errors.length" class="ui message negative"><div class="header"><i class="icon warning sign"></i>Error!</div>
+		<span ng-repeat="error in errors">- {{error}}<br></span>
+	  </div>
+	  
+	  <!-- Success message -->	
+	  <div ng-if="msgtext" class="ui message positive"><div class="header"><i class="icon checkmark"></i>Success!</div>
+		<span>{{msgtext}}</span>
+	  </div>
+
 	  <div class="two fields">
-	    <div class="field">
-	      <label>Full Name</label>
+	    <div class="field labeled">
+	      <label>Full Name</i></label>
 	      <input name="fullname" ng-model="objuser.fullname" type="text">
 	    </div>
 	    <div class="field">

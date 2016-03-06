@@ -37,7 +37,7 @@ angular.module('crud.list', [])
               angular.element(document.querySelector('tr[id="'+id+'"]')).remove();
             }else{
               $scope.msgtitle = "Error!";
-              $scope.msgtext  = response.msg;
+              $scope.error    = response.msg;
             }            
           });
           return true;

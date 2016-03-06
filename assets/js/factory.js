@@ -24,5 +24,6 @@ angular.module('crud.factory', [])
     all : function (){
       return skills;
     }
-  };
-});
+  }
+})
+

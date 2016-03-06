@@ -36,14 +36,18 @@ angular.module('crud.edit', [])
       headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
     })
     .success(function(response) {
+      $scope.msgtext  = "";
+      $scope.errors   = "";
       if(response.success){
-        $scope.msgtitle = "Success!";
+        // Reset form data 
+        $scope.objuser = {};
+
         $scope.msgtext  = response.msg;
-        
-        $window.location.href = '#/home';
+        setTimeout(function(){        
+          $window.location.href = '#/home';
+        },200);
       }else{
-        $scope.msgtitle = "Error!";
-        $scope.msgtext  = response.msg;
+        $scope.errors   = response.msg;
       }
     });
   });
