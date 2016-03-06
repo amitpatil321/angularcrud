@@ -1,6 +1,8 @@
 <h3 class="ui top attached inverted header">Update User</h3>
 <div class="ui attached segment">
-	<form class="ui form">
+	  <div class="ui negative message" ng-class="msgtext.length ? 'visible' : 'hidden'"><div class="header">{{msgtitle}}</div>
+		<span ng-repeat="error in msgtext">- {{error}}<br></span>
+	  </div>	
 	  <div class="two fields">
 	    <div class="field">
 	      <label>Full Name</label>
@@ -8,7 +10,7 @@
 	    </div>
 	    <div class="field">
 	      <label>Email</label>
-	      <input name="email" ng-model="objuser.email" type="email">
+	      <input name="email" ng-model="objuser.email" type="text">
 	    </div>
 	  </div>
 	  <div class="two fields">
@@ -27,9 +29,9 @@
 	  <div class="two fields">
 	    <div class="field">
 	      <label>Skills</label>
-			<select name="interests" multiple="" class="ui fluid dropdown interests" ng-model="objuser.interests">
+			<select name="skills" multiple="" class="ui fluid dropdown skills" ng-model="objuser.skills">
 				<option value="">Skills</option>
-				<option ng-repeat="interest in uinterests" value="{{interest}}">{{interest}}</option>
+				<option ng-repeat="skill in skills" value="{{skill}}">{{skill}}</option>
 			</select>	
 	      </div>
 	    <div class="field">

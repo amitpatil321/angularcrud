@@ -2,7 +2,7 @@
 $host    = "localhost";
 $db      = "demos";
 $dbuser  = "root";
-$dbpass  = "";
+$dbpass  = "mysql";
 
 $dbtable = "users";
 ?>

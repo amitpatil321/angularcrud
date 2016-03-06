@@ -1,11 +1,11 @@
 angular.module('crud.add', [])
 
-.controller('ctrlAdd', function($scope,$http,$routeParams,$window,genders,countries,interests,helper){
+.controller('ctrlAdd', function($scope,$http,$routeParams,$window,genders,countries,skills){
   $scope.objuser = {};
 
   $scope.genders    = genders.all();   
   $scope.countries  = countries.all();   
-  $scope.uinterests = interests.all(); 
+  $scope.skills = skills.all(); 
     
   setTimeout(function(){
     // Initialize semantic ui dropdown ui
@@ -23,14 +23,14 @@ angular.module('crud.add', [])
     })
     .success(function(response) {
       if(response.success){
-        $(".ui.form").prepend(helper.msgsuccess('User updated!'));
+        $scope.msgtitle = "Success!";
+        $scope.msgtext  = response.msg;
         $window.location.href = '#/home';
-      }else
-        $(".ui.form").prepend(helper.msgerr('Unexpected error'));
+      }else{
+        $scope.msgtitle = "Error!";
+        $scope.msgtext  = response.msg;
+      }
     })
-    .error(function(){
-
-    });
   });
 
   // On cancel button press go back

@@ -1,11 +1,11 @@
 angular.module('crud.edit', [])
 
-.controller('ctrlEdit', function($scope,$http,$routeParams,$window,genders,countries,interests,helper){
+.controller('ctrlEdit', function($scope,$http,$routeParams,$window,genders,countries,skills){
   $scope.objuser = {};
 
-  $scope.genders    = genders.all();   
-  $scope.countries  = countries.all();   
-  $scope.uinterests = interests.all(); 
+  $scope.genders   = genders.all();   
+  $scope.countries = countries.all();   
+  $scope.skills    = skills.all(); 
 
   // Fetch used details from DB
   $http.get("API/users/"+$routeParams.id)
@@ -18,10 +18,10 @@ angular.module('crud.edit', [])
       // Set users gender
       $('.gender').dropdown('set selected', $scope.objuser.gender);
       // Set users skills
-      skills = $scope.objuser.interests.split(",");
-      $('.interests').dropdown('set selected', skills);
+      skills = $scope.objuser.skills.split(",");
+      $('.skills').dropdown('set selected', skills);
     },1);
-      
+    
     // Initialize semantic ui dropdown ui
     $('.ui.dropdown').dropdown();
   });
@@ -29,7 +29,7 @@ angular.module('crud.edit', [])
   // Submit form 
   $('form').submit(function(event) {
 
-    $http({
+  $http({
       method  : 'POST',
       url     : "API/users/update",
       data    : $scope.objuser, //forms user object
@@ -37,13 +37,14 @@ angular.module('crud.edit', [])
     })
     .success(function(response) {
       if(response.success){
-        $(".ui.form").prepend(helper.msgsuccess('User updated!'));
+        $scope.msgtitle = "Success!";
+        $scope.msgtext  = response.msg;
+        
         $window.location.href = '#/home';
-      }else
-        $(".ui.form").prepend(helper.msgerr('Unexpected error'));
-    })
-    .error(function(){
-
+      }else{
+        $scope.msgtitle = "Error!";
+        $scope.msgtext  = response.msg;
+      }
     });
   });
 
