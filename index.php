@@ -21,7 +21,7 @@ error_reporting(E_ALL);
   <script src="assets/js/factory.js"></script>
  </head>
  <body>
-   <h1>CRUD Application</h1>
+   <h1>Users</h1>
    <div ng-view></div>
  </body>
 </html>

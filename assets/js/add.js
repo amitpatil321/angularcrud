@@ -1,12 +1,22 @@
 angular.module('crud.add', [])
 
-.controller('ctrlAdd', function($scope,$http,$routeParams,$window,genders,countries,skills){
+.controller('ctrlAdd', function(
+  $scope,
+  $http,
+  $routeParams,
+  $window,
+  genders,
+  countries,
+  skills
+){
   $scope.objuser = {};
 
   $scope.genders    = genders.all();   
   $scope.countries  = countries.all();   
   $scope.skills = skills.all(); 
-    
+  
+  $window.updateList = 0;
+  
   setTimeout(function(){
     // Initialize semantic ui dropdown ui
     $('.ui.dropdown').dropdown();
@@ -28,6 +38,9 @@ angular.module('crud.add', [])
         // Reset form data 
         $scope.objuser = {};
         $scope.msgtext  = response.msg;
+        
+        $window.updateList = 1;
+
         setTimeout(function(){          
           $window.location.href = '#/home';
         },200);
@@ -39,7 +52,7 @@ angular.module('crud.add', [])
 
   // On cancel button press go back
   $(".cancel").click(function(){
-    window.history.back();
+    $window.location.href = '#/home';
   })
     
 });

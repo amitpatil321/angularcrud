@@ -37,7 +37,7 @@
         </div>
       </div>      
     </td></tr>
-    <tr id="{{user.id}}" ng-repeat="user in data track by $index | filter:search | orderBy:sortType:sortReverse">
+    <tr id="{{user.id}}" ng-repeat="user in data | filter:search">
     	<td ng-click="sortType = 'fullname'">{{user.fullname}}</td>
     	<td>{{user.email}}</td>
     	<td>{{user.country}}</td>

@@ -1,8 +1,7 @@
 angular.module('crud.list', [])
 
-.controller('ctrlList', function($scope,$http){
+.controller('ctrlList', function($scope,$http, $window){
   // Fetch records from database
-
   $http({
   	method: "GET", 
   	url: "API/users", 

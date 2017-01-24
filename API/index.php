@@ -52,8 +52,8 @@ $app->get('/users', function() use($app) {
 	if($users){
 		// Convert to array
 		foreach($users as $each)
-		$arr[] = $each->as_array();
-	}    
+			$arr[] = $each->as_array();
+	}
     echo json_encode($arr);
 });
 
